@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import * as Contacts from 'expo-contacts';
 
 export default function ReadContactsScreen() {
   const [contacts, setContacts] = useState([]);
 
-  useEffect(() => {
-    const fetchContacts = async () => {
-      const { status } = await Contacts.requestPermissionsAsync();
-      if (status === 'granted') {
-        const { data } = await Contacts.getContactsAsync();
-        setContacts(data);
-      }
-    };
-    fetchContacts();
+  const fetchContacts = useCallback(async () => {
+    const { data } = await Contacts.getContactsAsync();
+    setContacts(data);
   }, []);
+
+  useEffect(() => {
+    fetchContacts();
+  }, [fetchContacts]);
 
   return (
     <View>

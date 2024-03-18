@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button } from 'react-native';
 import * as Contacts from 'expo-contacts';
 
-export default function CreateContactScreen() {
+export default function CreateContactScreen({ navigation }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -14,13 +14,9 @@ export default function CreateContactScreen() {
       [Contacts.Fields.PhoneNumbers]: [{ label: 'mobile', number: phoneNumber }],
     };
 
-    const { status } = await Contacts.requestPermissionsAsync();
-    if (status === 'granted') {
-      await Contacts.addContactAsync(contact);
-      setFirstName('');
-      setLastName('');
-      setPhoneNumber('');
-    }
+    await Contacts.addContactAsync(contact); 
+
+    navigation.navigate('ReadContacts'); 
   };
 
   return (
