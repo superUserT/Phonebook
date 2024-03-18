@@ -1,32 +1,20 @@
-// Import Screens
-import HomeScreen from "./components/Home";
-import AddNewContactScreen from "./components/AddNewContacts";
-import ViewContactScreen from "./components/ViewContacts";
-import EditContactScreen from "./components/EditContacts";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import CreateContactScreen from './components/CreateContactScreen';
+import ReadContactsScreen from './components/ReadContactsScreen';
+import UpdateDeleteContactScreen from './components/UpdateDeleteContactScreen';
 
-//Import React Navigation
-import { createAppContainer, createStackNavigator } from "react-navigation";
+const Stack = createStackNavigator();
 
-const MainNavigator = createStackNavigator(
-  {
-    Home: { screen: HomeScreen },
-    Add: { screen: AddNewContactScreen },
-    Edit: { screen: EditContactScreen },
-    View: { screen: ViewContactScreen }
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#ba2f16"
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        color: "#fff"
-      }
-    }
-  }
-);
-
-const App = createAppContainer(MainNavigator);
-
-export default App;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ReadContacts">
+        <Stack.Screen name="ReadContacts" component={ReadContactsScreen} />
+        <Stack.Screen name="CreateContact" component={CreateContactScreen} />
+        <Stack.Screen name="UpdateDeleteContact" component={UpdateDeleteContactScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
