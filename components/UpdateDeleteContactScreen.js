@@ -10,6 +10,8 @@ export default function UpdateDeleteContactScreen({ route, navigation }) {
     (contact.phoneNumbers && contact.phoneNumbers[0]?.number) || ''
   );
 
+  //add validation to check strings and len of numbers == 10
+
   const updateContact = async () => {
     const updatedContact = {
       id: contact.id,

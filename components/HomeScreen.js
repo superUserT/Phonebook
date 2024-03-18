@@ -6,9 +6,13 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate('ReadContacts');
   };
 
+  // add login and logout functionality top of the screen
+  // make the buttons footer navbars
+  // should only be able to see created contacts by specified user
+
+
   return (
     <View style={styles.container}>
-      {/* Add Contact Button */}
       <View style={styles.addButtonContainer}>
         <Button
           title="Add Contact"
@@ -16,7 +20,7 @@ export default function HomeScreen({ navigation }) {
         />
       </View>
       
-      {/* View Contacts Button */}
+  
       <View style={styles.viewButtonContainer}>
         <Button
           title="View Contacts"

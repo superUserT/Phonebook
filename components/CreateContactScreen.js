@@ -7,6 +7,8 @@ export default function CreateContactScreen({ navigation }) {
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
+//add validation to check strings and len of numbers == 10
+
   const createContact = async () => {
     const contact = {
       [Contacts.Fields.FirstName]: firstName,

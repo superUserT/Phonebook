@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, FlatList, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import * as Contacts from 'expo-contacts';
-
 
 export default function ReadContactsScreen({ navigation }) {
   const [contacts, setContacts] = useState([]);
@@ -11,6 +10,9 @@ export default function ReadContactsScreen({ navigation }) {
     const { data } = await Contacts.getContactsAsync();
     setContacts(data);
   }, []);
+
+  // add search functionality
+  // order contacts by alphabet
 
   useEffect(() => {
     fetchContacts();
@@ -28,17 +30,11 @@ export default function ReadContactsScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search by name or number"
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-      />
       <FlatList
         data={filteredContacts}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => handleContactPress(item)} style={styles.contactContainer}>
-            <Text>{item.name}</Text>
+            <Text>{item.name || ''}</Text>
             {item.phoneNumbers &&
               item.phoneNumbers.map((phoneNumber, index) => (
                 <Text key={index}>{phoneNumber.number}</Text>
@@ -56,14 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  searchInput: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-    width: '90%',
   },
   contactContainer: {
     borderWidth: 1,

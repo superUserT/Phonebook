@@ -7,6 +7,7 @@ import UpdateDeleteContactScreen from './components/UpdateDeleteContactScreen';
 import HomeScreen from './components/HomeScreen';
 
 const Stack = createStackNavigator();
+// should only be able to see created contacts by specified user
 
 export default function App() {
   return (
