@@ -11,8 +11,6 @@ export default function ReadContactsScreen({ navigation }) {
     setContacts(data);
   }, []);
 
-  // add search functionality
-  // order contacts by alphabet
 
   useEffect(() => {
     fetchContacts();

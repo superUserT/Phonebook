@@ -21,5 +21,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-// need to test on android and web
