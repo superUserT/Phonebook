@@ -8,21 +8,15 @@ export default function HomeScreen({ navigation }) {
 
 
   return (
-    <View style={styles.container}>
-      <View style={styles.addButtonContainer}>
-        <Button
-          title="Login"
-          onPress={() => navigation.navigate('handleLogin')}
-        />
-      </View>
-
+    <View style={styles.container}>       
       <View style={styles.addButtonContainer}>
         <Button
           title="Add Contact"
           onPress={() => navigation.navigate('CreateContact')}
         />
       </View>
-      
+
+
   
       <View style={styles.viewButtonContainer}>
         <Button
