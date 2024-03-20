@@ -1,5 +1,7 @@
 # React native contacts application
 
+This is a simple phonebook application built with React Native and Expo, allowing users to manage their contacts with basic CRUD operations. The application integrates Firebase for authentication and storage of contact data.
+
 
 ## Directory structure
 
@@ -81,3 +83,8 @@ npx expo start --tunnel             # for those connecting using LAN connecions
 ```
 
 This will run the apllication through the mobile applciation.
+
+
+## Considerations
+
+I have configured firebase for this project for authentication, but had not had the time to configure login and seperation of concern. Contacts are managed locally for now.
