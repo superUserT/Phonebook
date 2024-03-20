@@ -6,6 +6,9 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate('ReadContacts');
   };
 
+  const handleLogin = () => {
+    navigation.navigate('Login');
+  };
 
   return (
     <View style={styles.container}>       
@@ -16,12 +19,17 @@ export default function HomeScreen({ navigation }) {
         />
       </View>
 
-
-  
       <View style={styles.viewButtonContainer}>
         <Button
           title="View Contacts"
           onPress={handleViewContacts}
+        />
+      </View>
+
+      <View style={styles.loginButtonContainer}>
+        <Button
+          title="Login"
+          onPress={handleLogin}
         />
       </View>
     </View>
@@ -36,21 +44,19 @@ const styles = StyleSheet.create({
   },
   addButtonContainer: {
     position: 'absolute',
-    bottom: 80,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'black',
-    backgroundColor: 'white',
-    padding: 10,
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -50 }, { translateY: -50 }],
   },
   viewButtonContainer: {
     position: 'absolute',
-    bottom: 20,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'black',
-    backgroundColor: 'white',
-    padding: 10,
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -50 }, { translateY: 20 }],
+  },
+  loginButtonContainer: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
   },
 });
-	
