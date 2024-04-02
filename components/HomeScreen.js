@@ -6,9 +6,9 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate('ReadContacts');
   };
 
-  const handleLogin = () => {
-    navigation.navigate('Login');
-  };
+  // const handleLogin = () => {
+  //   navigation.navigate('Login');
+  // };
 
   return (
     <View style={styles.container}>       
@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.loginButtonContainer}>
         <Button
           title="Login"
-          onPress={handleLogin}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </View>
