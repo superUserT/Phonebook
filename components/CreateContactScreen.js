@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 import * as Contacts from 'expo-contacts';
+import { getFirestore, db } from "../services/config";
 
 export default function CreateContactScreen({ navigation }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-//add validation to check strings and len of numbers == 10
-
   const createContact = async () => {
-    const contact = {
-      [Contacts.Fields.FirstName]: firstName,
-      [Contacts.Fields.LastName]: lastName,
-      [Contacts.Fields.PhoneNumbers]: [{ label: 'mobile', number: phoneNumber }],
-    };
+    try {
+      // Add contact using Expo Contacts
+      const contact = {
+        [Contacts.Fields.FirstName]: firstName,
+        [Contacts.Fields.LastName]: lastName,
+        [Contacts.Fields.PhoneNumbers]: [{ label: 'mobile', number: phoneNumber }],
+      };
 
-    await Contacts.addContactAsync(contact); 
+      await Contacts.addContactAsync(contact);
 
-    navigation.navigate('ReadContacts'); 
+      // Save contact to Firestore
+      await firestore().collection('contacts').add({
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+      });
+
+      // Navigate to ReadContacts screen
+      navigation.navigate('ReadContacts');
+    } catch (error) {
+      console.error('Error creating contact:', error);
+    }
   };
 
   return (
